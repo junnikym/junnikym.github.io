@@ -1,9 +1,17 @@
 <template>
-  <Tutorial/>
+	<GithubReadme></GithubReadme>
 </template>
 
 <script>
+import GithubReadme from '@/components/github-readme.vue'
+
 export default {
-  name: 'IndexPage'
+  
+	name: 'IndexPage',
+
+	components: {
+		GithubReadme
+	},
+
 }
 </script>
