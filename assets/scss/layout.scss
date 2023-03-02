@@ -1,0 +1,32 @@
+@import '@/assets/scss/colors.scss';
+
+$header-size: 280px;
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  background-color: $lightest-color;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.contents {
+  width: 100vw;
+  display: grid;
+  align-content: start;
+  justify-content: stretch;
+}
+
+header {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: $header-size;
+  background-color: $main-color;
+}

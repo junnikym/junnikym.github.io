@@ -1,0 +1,9 @@
+$profile-image-size: 200px;
+$profile-info-size: $profile-image-size * 1.25;
+$profile-padding: 20px;
+$profile-margin: 50px;
+
+$profile-max-width: ($profile-image-size + $profile-info-size + $profile-padding);
+$profile-min-width: $profile-image-size;
+$profile-max-height: ($profile-image-size * 1.5);
+$profile-min-height: $profile-image-size;
