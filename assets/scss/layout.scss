@@ -1,12 +1,11 @@
-$background-color: #e8e9ec;
-$main-color: #152540;
+@import '@/assets/scss/colors.scss';
 
 $header-size: 280px;
 
 html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
-  background-color: $background-color;
+  background-color: $lightest-color;
 }
 
 body {
