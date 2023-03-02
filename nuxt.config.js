@@ -1,8 +1,8 @@
 export default {
 
-  target: 'static', 
+  target: 'static',
   router: {
-	  base: '/blog/' // github repo
+	  base: '/'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -24,6 +24,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/scss/layout.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
