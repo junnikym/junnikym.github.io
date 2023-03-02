@@ -47,3 +47,9 @@ jobs:
 
       - name: Run tests 🧪
         run: yarn test --passWithNoTests
+
+      - name: Generate static site ⚙️
+        run: yarn generate
+
+      - name: Deploy 🚀
+        run: yarn deploy
