@@ -3,8 +3,12 @@
     <RoundProfileImage class="__profile-image"></RoundProfileImage>
     <div class="__profile-info">
       <h2> {{userInfo?.name}} </h2>
-      <b class="__porifle_info_text"> <span class='github-icon'></span> {{userInfo?.login}} </b>
-      <b class="__porifle_info_text"> <span class='email-icon'></span> {{userInfo?.email}} </b>
+      <a href="https://github.com/junnikym">
+        <b class="__porifle_info_text"> <span class='github-icon'></span> {{userInfo?.login}} </b>
+      </a>
+      <a href="mailto:junnikym@gmail.com">
+        <b class="__porifle_info_text"> <span class='email-icon'></span> {{userInfo?.email}} </b>
+      </a>
     </div>
   </div>
 </template>
@@ -126,6 +130,16 @@ export default {
     margin: 5px;
     width: $profile-info-icon-size;
     height: $profile-info-icon-size;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      .__porifle_info_text, .github-icon, .email-icon {
+        filter: invert(20%);
+      }
+    }
   }
 
 }
