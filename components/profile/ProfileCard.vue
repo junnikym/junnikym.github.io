@@ -3,8 +3,12 @@
     <RoundProfileImage class="__profile-image"></RoundProfileImage>
     <div class="__profile-info">
       <h2> {{userInfo?.name}} </h2>
-      <h5> {{userInfo?.login}} </h5>
-      <h5> {{userInfo?.email}} </h5>
+      <a href="https://github.com/junnikym">
+        <b class="__porifle_info_text"> <span class='github-icon'></span> {{userInfo?.login}} </b>
+      </a>
+      <a href="mailto:junnikym@gmail.com">
+        <b class="__porifle_info_text"> <span class='email-icon'></span> {{userInfo?.email}} </b>
+      </a>
     </div>
   </div>
 </template>
@@ -21,12 +25,16 @@ export default {
   },
 
   created() {
-    this.loadUserInfo();
+    // this.loadUserInfo();
   },
 
   data() {
     return {
-      userInfo: null,
+      userInfo: {
+        name: "김형준",
+        login: "junnikym",
+        email: "junnikym@gmail.com"
+      },
       profileInfoUrl: "https://api.github.com/users/junnikym",
     }
   },
@@ -56,6 +64,7 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/colors.scss";
+@import '@/assets/scss/icons.scss';
 @import "@/assets/scss/profile/profile-variables.scss";
 
 .__profile {
@@ -91,6 +100,9 @@ export default {
     }
     .__profile-image {
     }
+    .github-icon, .email-icon {
+      filter: invert(100%);
+    }
   }
 
   * {
@@ -106,6 +118,30 @@ export default {
     width: $profile-image-size;
     height: $profile-image-size;
   }
+
+  $profile-info-text-size: 15px;
+  $profile-info-icon-size: 15px;
+  .__porifle_info_text {
+    display: flex;
+    align-items: center;
+    font-size: $profile-info-text-size;
+  }
+  .github-icon, .email-icon {
+    margin: 5px;
+    width: $profile-info-icon-size;
+    height: $profile-info-icon-size;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      .__porifle_info_text, .github-icon, .email-icon {
+        filter: invert(20%);
+      }
+    }
+  }
+
 }
 
 </style>
