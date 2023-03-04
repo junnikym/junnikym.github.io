@@ -6,6 +6,7 @@
         class="profile-card" />
     </header>
     <section>
+<!--      <div background>-->
       <div class="post-card-grid-wrapper">
         <PostCardGrid class="post-card-grid"/>
       </div>

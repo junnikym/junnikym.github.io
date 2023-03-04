@@ -1,13 +1,14 @@
 <template>
   <div class="post-card">
-    <h1 class="post-card-number">#1</h1>
-    <h3 class="post-card-title">This is Title</h3>
+    <h1 class="post-card-number">#{{number}}</h1>
+    <h3 class="post-card-title">{{title}}</h3>
     <div class="post-card-contents">
-      this is contents<br/>
-      contents preview or image will be here
+      {{preview}}
     </div>
 <!--    <img class="post-card-contents"-->
 <!--         src="https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80" />-->
+
+    <div class="post-card-created-at">{{createdAt}}</div>
   </div>
 </template>
 
@@ -15,6 +16,13 @@
 
 export default {
   name: "PostCard",
+
+  props: {
+    number: Number,
+    title: String,
+    preview: String,
+    createdAt: String,
+  }
 }
 </script>
 
@@ -27,6 +35,7 @@ $post-card-content-ratio: 3/4;
 .post-card {
   position: relative;
 
+  min-height: 105px;
   padding: 20px;
 
   /* From https://css.glass */
@@ -55,8 +64,6 @@ $post-card-content-ratio: 3/4;
     top: -15px; right: 30px;
 
     font-size: 100px;
-    color: white;
-    opacity: 0.25;
 
     -webkit-user-select:none;
     -moz-user-select:none;
@@ -73,9 +80,21 @@ $post-card-content-ratio: 3/4;
     overflow: hidden;
     width: 100%;
   }
-  .post-card-title, .post-card-contents {
+
+  .post-card-number, .post-card-created-at {
+    color: white;
+    opacity: 0.25;
+  }
+  .post-card-title, .post-card-contents  {
     color: $darkest-color;
-    opacity: 0.8;
+    opacity: 0.7;
+  }
+
+  .post-card-created-at {
+    position: absolute;
+    font-weight: bold;
+    bottom: 10px;
+    right: 20px;
   }
 }
 </style>
