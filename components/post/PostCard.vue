@@ -1,5 +1,5 @@
 <template>
-  <div class="post-card">
+  <div class="post-card" @click.prevent="goToPost()">
     <h1 class="post-card-number">#{{number}}</h1>
     <h3 class="post-card-title">{{title}}</h3>
     <div class="post-card-contents">
@@ -22,6 +22,12 @@ export default {
     title: String,
     preview: String,
     createdAt: String,
+  },
+
+  methods: {
+    goToPost() {
+      this.$router.push(`/post/${this.number}`)
+    },
   }
 }
 </script>

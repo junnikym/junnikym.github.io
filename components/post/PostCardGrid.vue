@@ -39,12 +39,10 @@ export default {
   methods: {
 
     convertResponse(res) {
-      console.log(res.created_at.split('T'))
-      const contentOnTitle = JSON.parse(res.title)
       return {
         number: res.number,
-        title: contentOnTitle.title,
-        preview: contentOnTitle.preview,
+        title: res.title,
+        preview: res.body,
         createdAt: res.created_at.split("T")[0],
       }
     },
@@ -57,7 +55,6 @@ export default {
         this.posts = this.posts.concat(
           res.data.map( it=> this.convertResponse(it) )
         );
-        console.log(res.data.map( it=> this.convertResponse(it) ));
       }
 
       const issuesLoadErr = (err)=>{
@@ -68,7 +65,6 @@ export default {
         .then(issuesLoadThen)
         .catch(issuesLoadErr);
 
-      console.log(this.posts);
       return this.posts;
     }
 
