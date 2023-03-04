@@ -30,6 +30,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '@/plugins/vue-infinite-loading', mode: 'client', ssr: false },
+    { src: '@/plugins/vue-aos', mode: 'client', ssr: false },
+    { src: '@/plugins/vue-masonry-css', mode: 'client', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

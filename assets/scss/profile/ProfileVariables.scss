@@ -7,3 +7,5 @@ $profile-max-width: ($profile-image-size + $profile-info-size + $profile-padding
 $profile-min-width: $profile-image-size;
 $profile-max-height: ($profile-image-size * 1.5);
 $profile-min-height: $profile-image-size;
+
+$profile-transforms-at: $profile-max-width + $profile-padding * 2 + $profile-margin * 2
