@@ -15,7 +15,18 @@ const loadUrl = githubRawContent+"/"+username;
 export default {
 
   props: {
-    repoName: String,
+    repoName: {
+      type: String,
+      default: null
+    },
+    branchName: {
+      type: String,
+      default: 'main'
+    },
+    path: {
+      type: String,
+      default: "README.md"
+    }
   },
 
 	data() {
@@ -42,7 +53,7 @@ export default {
 				console.error(err);
 			}
 
-			axios.get(loadUrl+`/${this.repoName}/main/README.md`)
+			axios.get(loadUrl+`/${this.repoName}/${this.branchName}/${this.path}`)
         .then(readmeLoadThen)
         .catch(readmeLoadErr);
 		}

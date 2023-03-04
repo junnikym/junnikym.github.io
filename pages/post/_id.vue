@@ -1,6 +1,8 @@
 <template>
   <GithubReadme v-if="type==='repo'"
-                :repoName="repoName"/>
+                :repoName="repoName"
+                :branchName="branchName"
+                :path="path" />
 </template>
 
 <script>
@@ -18,6 +20,8 @@ export default {
     return {
       type: null,
       repoName: null,
+      branchName: null,
+      path: null
     }
   },
   created() {
@@ -25,14 +29,22 @@ export default {
   },
   methods: {
 
+    textToJson(txt) {
+      try {
+        return JSON.parse(txt)
+      } catch(e) {
+        return null;
+      }
+    },
     convertResponse(res) {
       for(let key in res) {
         const body = res[key].body;
-        const repo = body.startsWith('!!repo')
-        if(repo) {
-          this.type = 'repo';
-          this.repoName = body.slice(7);
-          console.log(this.repoName);
+        const json = this.textToJson(body);
+        if(json) {
+          this.type = json.type;
+          this.repoName = json.repo;
+          this.branchName = json.branch;
+          this.path = json.path
           return;
         }
       }
