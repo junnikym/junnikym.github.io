@@ -65,7 +65,7 @@ export default {
 <style lang="scss">
 @import "@/assets/scss/colors.scss";
 @import '@/assets/scss/icons.scss';
-@import "@/assets/scss/profile/profile-variables.scss";
+@import "assets/scss/profile/ProfileVariables.scss";
 
 .__profile {
   display: flex;
@@ -76,7 +76,7 @@ export default {
 
   height: ($profile-padding * 2 + $profile-image-size);
 
-  @media (min-width: ($profile-max-width + $profile-padding * 2 + $profile-margin * 2)) {
+  @media (min-width: $profile-transforms-at) {
     width: $profile-max-width;
     height: $profile-min-height;
 
@@ -89,7 +89,7 @@ export default {
     }
   }
 
-  @media (max-width: ($profile-max-width + $profile-padding * 2 + $profile-margin * 2)) {
+  @media (max-width: $profile-transforms-at) {
     width: $profile-min-width;
     height: $profile-max-height;
 
