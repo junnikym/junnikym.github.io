@@ -1,5 +1,6 @@
 <template>
-  <GithubReadme v-if="type==='repo'"></GithubReadme>
+  <GithubReadme v-if="type==='repo'"
+                :repoName="repoName"/>
 </template>
 
 <script>
@@ -16,6 +17,7 @@ export default {
   data() {
     return {
       type: null,
+      repoName: null,
     }
   },
   created() {
@@ -25,9 +27,12 @@ export default {
 
     convertResponse(res) {
       for(let key in res) {
-        const repo = res[key].body.startsWith('!!repo')
+        const body = res[key].body;
+        const repo = body.startsWith('!!repo')
         if(repo) {
           this.type = 'repo';
+          this.repoName = body.slice(7);
+          console.log(this.repoName);
           return;
         }
       }

@@ -13,7 +13,11 @@ const githubRawContent = "https://raw.githubusercontent.com";
 const loadUrl = githubRawContent+"/"+username;
 
 export default {
-	
+
+  props: {
+    repoName: String,
+  },
+
 	data() {
 		return {
 			readmeText: "",
@@ -38,15 +42,15 @@ export default {
 				console.error(err);
 			}
 
-			axios.get(loadUrl+'/LearningTDD/main/README.md')
-			.then(readmeLoadThen)
-			.catch(readmeLoadErr);
+			axios.get(loadUrl+`/${this.repoName}/main/README.md`)
+        .then(readmeLoadThen)
+        .catch(readmeLoadErr);
 		}
 	},
 
 	computed: {
 		changeMarkdown() {
-			
+
 		}
 	}
 
