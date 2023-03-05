@@ -8,7 +8,7 @@
                 :title="post.title"
                 :preview="post.preview"
                 :createdAt="post.createdAt"
-                data-aos="fade-up" />
+                data-aos="fade-in" />
     </masonry>
   </div>
 </template>
@@ -74,8 +74,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/scss/colors.scss";
+
 .post-card-grid {
   max-width: 1500px;
+
+  border-left: 1px solid $less-light-color;
+  border-right: 1px solid $less-light-color;
+  padding: 20px;
 }
 .post-card{
   margin: 20px;

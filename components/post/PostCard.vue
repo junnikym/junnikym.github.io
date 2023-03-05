@@ -44,18 +44,23 @@ $post-card-content-ratio: 3/4;
   min-height: 105px;
   padding: 20px;
 
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(17px);
-  -webkit-backdrop-filter: blur(17px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-    background-color: rgba(255, 255, 255, 0.2);
-    -webkit-backdrop-filter: blur(17px);
-    backdrop-filter: blur(17px);
+  border-radius: 15px;
+  background-color: $lighter-color;
+  text-shadow: 1px 1px 0 $shadow-white-color;
+
+  box-shadow: -5px -5px 20px $shadow-white-color,  5px 5px 20px $shadow-dark-color;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    box-shadow: -2px -2px 5px $shadow-white-color, 2px 2px 5px $shadow-dark-color;
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 2px $shadow-white-color, inset -1px -1px 2px $shadow-white-color;
+  }
+
   color: $dark-color;
 
   overflow: hidden;
