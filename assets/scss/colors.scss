@@ -1,8 +1,12 @@
 $lightest-color: #e8e9ec;
 $lighter-color: #d0d3d9;
 $light-color: #b9bec6;
+$less-light-color: #a1a8b3;
 
 $darkest-color: #020406;
 $dark-color: #0d1626;
 
 $main-color: #152540;
+
+$shadow-white-color: $lightest-color;
+$shadow-dark-color: $less-light-color;
