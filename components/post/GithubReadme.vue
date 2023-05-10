@@ -1,5 +1,6 @@
 <template>
-	<div v-html="$md.render(readmeText)">
+	<div>
+		<viewer :value=readmeText></viewer>
 	</div>
 </template>
 
@@ -13,7 +14,6 @@ const githubRawContent = "https://raw.githubusercontent.com";
 const loadUrl = githubRawContent+"/"+username;
 
 export default {
-
   props: {
     repoName: {
       type: String,
