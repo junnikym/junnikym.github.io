@@ -33,6 +33,7 @@ export default {
     { src: '@/plugins/vue-infinite-loading', mode: 'client', ssr: false },
     { src: '@/plugins/vue-aos', mode: 'client', ssr: false },
     { src: '@/plugins/vue-masonry-css', mode: 'client', ssr: false },
+    { src: '@/plugins/vue-tui-editor.js', ssr:false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -44,12 +45,12 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-	"@nuxtjs/axios",
-	"@nuxtjs/markdownit",
+	  "@nuxtjs/axios",
+    "@tui-nuxt/editor"
   ],
 
-  markdownit: {
-    runtime: true // Support `$md()`
+  tui: {
+    editor: {}
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
