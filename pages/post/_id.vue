@@ -1,13 +1,26 @@
 <template>
-  <GithubReadme v-if="type==='repo'"
-                :repoName="repoName"
-                :branchName="branchName"
-                :path="path" />
+  <div class="contents"> 
+    <header>
+      <PostHeader class="post-card"
+                :number="postNumber"
+                :title="'test'"
+                :preview="'test'"
+                :createdAt="'test'"/>
+    </header>
+    <section>
+      <GithubReadme class="post"
+                    v-if="type==='repo'"
+                    :repoName="repoName"
+                    :branchName="branchName"
+                    :path="path" />
+    </section>
+  </div>
 </template>
 
 <script>
 
 import axios from "axios";
+import PostHeader from "@/components/post/PostHeader.vue";
 import GithubReadme from "@/components/post/GithubReadme.vue";
 
 const username = "junnikym";
@@ -21,11 +34,13 @@ export default {
       type: null,
       repoName: null,
       branchName: null,
-      path: null
+      path: null,
+      postNumber: null,
     }
   },
   created() {
-    this.loadPostInfos()
+    this.loadPostInfos();
+    this.postNumber = parseInt(this.$route.params.id);
   },
   methods: {
 
@@ -64,7 +79,11 @@ export default {
         console.error(err);
       }
 
-      await axios.get(loadUrl)
+      await axios.get(loadUrl, {
+          headers: {
+            Authorization: "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",
+          }
+        })
         .then(issueCommentsLoadThen)
         .catch(issueCommentsLoadErr);
     },
@@ -72,6 +91,32 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/assets/scss/colors.scss";
+@import "@/assets/scss/layout.scss";
 
+.contents {
+  place-items: center;
+}
+
+.post {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  max-width: 500px;
+}
+header {
+  display: flex;
+  position: relative;
+  width: 100%;
+
+  .post-card {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+  }
+}
 </style>

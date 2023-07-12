@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<viewer :value=readmeText></viewer>
-	</div>
+	<viewer :value=readmeText></viewer>
 </template>
 
 <script>
@@ -68,6 +66,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped lang="scss">
+@import "@/assets/scss/colors.scss";
 
 </style>
