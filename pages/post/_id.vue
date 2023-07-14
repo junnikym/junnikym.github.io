@@ -13,6 +13,7 @@
                     :repoName="repoName"
                     :branchName="branchName"
                     :path="path" />
+	  <Comment/>
     </section>
   </div>
 </template>
@@ -22,6 +23,7 @@
 import axios from "axios";
 import PostHeader from "@/components/post/PostHeader.vue";
 import GithubReadme from "@/components/post/GithubReadme.vue";
+import Comment from "@/components/comment/Comment.vue";
 
 const username = "junnikym";
 const repo = "blog-post";
