@@ -38,13 +38,12 @@ export default {
 	},
 
 	methods: {
-
 		async loadGithubReadme() {
 			const readmeLoadThen = (res)=> {
 				if(res.status != 200)
 					return console.error("Can Not Found");
 
-				this.readmeText = res.data;
+				this.renderMarkdown(res.data)
 			}
 
 			const readmeLoadErr = (err)=>{
@@ -52,9 +51,38 @@ export default {
 			}
 
 			axios.get(loadUrl+`/${this.repoName}/${this.branchName}/${this.path}`)
-        .then(readmeLoadThen)
-        .catch(readmeLoadErr);
-		}
+			.then(readmeLoadThen)
+			.catch(readmeLoadErr);
+		},
+
+		async renderMarkdown(markdown) {
+			const renderMarkdownLoadThen = (res)=> {
+				if(res.status != 200)
+					return console.error("Can Not Found");
+
+				this.readmeText = res.data;
+			}
+
+			const renderMarkdownLoadErr = (err)=>{
+				console.error(err);
+			}
+
+			await axios.post(
+				"https://api.github.com/markdown", 
+				{
+					text: markdown
+				},
+				{
+					headers: {
+						Accept: "application/vnd.github+json",
+						Authorization: "Bearer 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",
+						"X-GitHub-Api-Version": "2022-11-28"
+					}
+				}
+			)
+			.then(renderMarkdownLoadThen)
+			.catch(renderMarkdownLoadErr);
+		},
 	},
 
 	computed: {
