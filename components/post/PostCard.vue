@@ -1,11 +1,11 @@
 <template>
   <div class="post-card" @click.prevent="goToPost()">
-    <div class="post-card-visual-infos">
+    <div v-if="isPictureMode()" class="post-card-visual-infos">
       <div class="post-card-image-outer-frame">
         <div class="post-card-image-inner-frame">
           <img v-if="imageUrl" :src="imageUrl" />
-          <div v-else>
-            <h1 class="post-card-number">#{{number}}</h1>
+          <div v-else style="width: 100%; height: 100%;">
+            <div class="post-card-number">#{{number}}</div>
             <div class="post-card-created-at">{{createdAt}}</div>
           </div>
         </div>
@@ -13,7 +13,7 @@
     </div>
     <div class="post-card-text-infos">
       <h1 class="post-card-number">#{{number}}</h1>
-      <h3 class="post-card-title">{{title}}</h3>
+      <h2 class="post-card-title">{{title}}</h2>
       <div class="post-card-contents">
         {{preview}}
       </div>
@@ -36,6 +36,10 @@ export default {
   },
 
   methods: {
+    isPictureMode() {
+      return window.innerWidth > 880
+    },
+
     goToPost() {
       this.$router.push(`/post/${this.number}`)
     },
@@ -92,10 +96,12 @@ $post-card-content-ratio: 3/4;
       display: flex;
       justify-content: center;
       align-content: center;
-      margin: 25px;
-      width: 70%;
-      padding-bottom: 70%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 85%;
+      padding-bottom: 85%;
       box-shadow: inset 2px 2px 8px $shadow-dark-color, inset -2px -2px 8px $shadow-white-color;
+      transition: all 0.2s ease-in-out;
       border-radius: 50%;
 
       &:hover {
@@ -115,7 +121,9 @@ $post-card-content-ratio: 3/4;
         width: calc(100% - 25px * 2);
         height: calc(100% - 25px * 2);
         box-shadow: -2px -2px 8px $shadow-white-color, 2px 2px 8px $shadow-dark-color;
+        transition: all 0.2s ease-in-out;
         border-radius: 50%;
+        overflow: hidden;
 
         &:hover {
           box-shadow: -1px -1px 3px $shadow-white-color, 1px 1px 3px $shadow-dark-color;
@@ -134,8 +142,11 @@ $post-card-content-ratio: 3/4;
         }
 
         .post-card-number {
-          padding: 25px;
-          padding-bottom: 0px;
+          position: absolute;
+          text-align: center;
+          width: 100%;
+          top: calc(50% - 25px);
+          transform: translateY(-50%);
           font-size: 100px;
           color: $less-light-color;
 
@@ -146,7 +157,12 @@ $post-card-content-ratio: 3/4;
         }
 
         .post-card-created-at {
+          position: absolute;
           text-align: center;
+          width: 100%;
+          top: calc(50% + 50px);
+          transform: translateY(-50%);
+          font-size: 18px;
           font-weight: bold;
           color: $less-light-color;
 
@@ -172,7 +188,6 @@ $post-card-content-ratio: 3/4;
     .post-card-number {
       position: absolute;
       top: -15px; right: 30px;
-
       font-size: 100px;
 
       -webkit-user-select:none;
