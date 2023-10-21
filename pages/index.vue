@@ -84,6 +84,8 @@ $header-height: 220px;
 header {
   height: $header-size;
 
+  box-shadow: 0px 0px 15px $darkest-color;
+
   @media (min-width: $profile-transforms-at) {
     margin-bottom: ($profile-image-size * (4/10));
   }

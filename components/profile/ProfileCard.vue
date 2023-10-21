@@ -75,6 +75,7 @@ export default {
   padding: $profile-padding;
 
   height: ($profile-padding * 2 + $profile-image-size);
+  text-shadow: 5px 5px 5px $darkest-color;
 
   @media (min-width: $profile-transforms-at) {
     width: $profile-max-width;
