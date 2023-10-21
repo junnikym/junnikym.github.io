@@ -1,14 +1,20 @@
 <template>
   <div class="post-card" @click.prevent="goToPost()">
-    <h1 class="post-card-number">#{{number}}</h1>
-    <h3 class="post-card-title">{{title}}</h3>
-    <div class="post-card-contents">
-      {{preview}}
+    <div class="post-card-visual-infos">
+      <div class="post-card-image-outer-frame">
+        <div class="post-card-image-inner-frame">
+          <img class="post-card-image" src="https://logos-world.net/wp-content/uploads/2021/02/Docker-Emblem.png"/>
+        </div>
+      </div>
     </div>
-<!--    <img class="post-card-contents"-->
-<!--         src="https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80" />-->
-
-    <div class="post-card-created-at">{{createdAt}}</div>
+    <div class="post-card-text-infos">
+      <h1 class="post-card-number">#{{number}}</h1>
+      <h3 class="post-card-title">{{title}}</h3>
+      <div class="post-card-contents">
+        {{preview}}
+      </div>
+      <div class="post-card-created-at">{{createdAt}}</div>
+    </div>
   </div>
 </template>
 
@@ -70,42 +76,109 @@ $post-card-content-ratio: 3/4;
     padding: 0;
   }
 
-  .post-card-number {
-    position: absolute;
-    top: -15px; right: 30px;
-
-    font-size: 100px;
-
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none
-  }
-
-  .post-card-title {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .post-card-contents {
+  .post-card-visual-infos {
     position: relative;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
     width: 100%;
+
+    .post-card-image-outer-frame {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      margin: 25px;
+      width: 70%;
+      padding-bottom: 70%;
+      box-shadow: inset 2px 2px 8px $shadow-dark-color, inset -2px -2px 8px $shadow-white-color;
+      border-radius: 50%;
+
+      &:hover {
+        box-shadow: inset 1px 1px 3px $shadow-dark-color, inset -1px -1px 3px $shadow-white-color;
+      }
+
+      &:active {
+        box-shadow: inset -1px -1px 2px $shadow-dark-color, inset 1px 1px 2px $shadow-white-color;
+      }
+
+      .post-card-image-inner-frame {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        top: 25px;
+        width: calc(100% - 25px * 2);
+        height: calc(100% - 25px * 2);
+        box-shadow: -2px -2px 8px $shadow-white-color, 2px 2px 8px $shadow-dark-color;
+        border-radius: 50%;
+
+        &:hover {
+          box-shadow: -1px -1px 3px $shadow-white-color, 1px 1px 3px $shadow-dark-color;
+        }
+
+        &:active {
+          box-shadow: -1px -1px 2px $shadow-white-color, 1px 1px 2px $shadow-dark-color;
+        }
+
+        .post-card-image {
+          position: absolute;
+          padding: 20%;
+          height: 60%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
   }
 
-  .post-card-number, .post-card-created-at {
-    color: white;
-    opacity: 0.25;
-  }
-  .post-card-title, .post-card-contents  {
-    color: $darkest-color;
-    opacity: 0.7;
+  .post-card-text-infos {
+    position: relative;
+    width: 100%;
+    height: 135px;
+
+    .post-card-image {
+      position: relative;
+      width: 80%;
+    }
+
+    .post-card-number {
+      position: absolute;
+      top: -15px; right: 30px;
+
+      font-size: 100px;
+
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none
+    }
+
+    .post-card-title {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .post-card-contents {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .post-card-number, .post-card-created-at {
+      color: white;
+      opacity: 0.25;
+    }
+    .post-card-title, .post-card-contents  {
+      color: $darkest-color;
+      opacity: 0.7;
+    }
+
+    .post-card-created-at {
+      position: absolute;
+      font-weight: bold;
+      bottom: 10px;
+      right: 20px;
+    }
   }
 
-  .post-card-created-at {
-    position: absolute;
-    font-weight: bold;
-    bottom: 10px;
-    right: 20px;
-  }
 }
 </style>
