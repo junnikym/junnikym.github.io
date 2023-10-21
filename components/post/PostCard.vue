@@ -3,7 +3,11 @@
     <div class="post-card-visual-infos">
       <div class="post-card-image-outer-frame">
         <div class="post-card-image-inner-frame">
-          <img class="post-card-image" src="https://logos-world.net/wp-content/uploads/2021/02/Docker-Emblem.png"/>
+          <img v-if="imageUrl" :src="imageUrl" />
+          <div v-else>
+            <h1 class="post-card-number">#{{number}}</h1>
+            <div class="post-card-created-at">{{createdAt}}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -27,6 +31,7 @@ export default {
     number: Number,
     title: String,
     preview: String,
+    imageUrl: String,
     createdAt: String,
   },
 
@@ -120,12 +125,35 @@ $post-card-content-ratio: 3/4;
           box-shadow: -1px -1px 2px $shadow-white-color, 1px 1px 2px $shadow-dark-color;
         }
 
-        .post-card-image {
+        image {
           position: absolute;
           padding: 20%;
           height: 60%;
           left: 50%;
           transform: translateX(-50%);
+        }
+
+        .post-card-number {
+          padding: 25px;
+          padding-bottom: 0px;
+          font-size: 100px;
+          color: $less-light-color;
+
+          -webkit-user-select:none;
+          -moz-user-select:none;
+          -ms-user-select:none;
+          user-select:none
+        }
+
+        .post-card-created-at {
+          text-align: center;
+          font-weight: bold;
+          color: $less-light-color;
+
+          -webkit-user-select:none;
+          -moz-user-select:none;
+          -ms-user-select:none;
+          user-select:none
         }
       }
     }
@@ -165,6 +193,7 @@ $post-card-content-ratio: 3/4;
 
     .post-card-number, .post-card-created-at {
       color: white;
+      text-shadow: $less-light-color 2px 2px;
       opacity: 0.25;
     }
     .post-card-title, .post-card-contents  {
@@ -175,7 +204,7 @@ $post-card-content-ratio: 3/4;
     .post-card-created-at {
       position: absolute;
       font-weight: bold;
-      bottom: 10px;
+      bottom: 5px;
       right: 20px;
     }
   }
