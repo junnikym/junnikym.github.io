@@ -99,8 +99,7 @@ export default {
       padding: $profile-padding 0 0;
       color: $darkest-color;
     }
-    .__profile-image {
-    }
+  
     .github-icon, .email-icon {
       filter: invert(100%);
     }
@@ -109,10 +108,6 @@ export default {
   * {
     margin: 0;
     padding: 0;
-  }
-
-  .__profile-info {
-
   }
 
   .__profile-image {

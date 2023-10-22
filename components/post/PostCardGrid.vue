@@ -84,6 +84,8 @@ export default {
   padding: 20px;
 }
 .post-card{
-  margin: 20px;
+  margin: 40px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 </style>
