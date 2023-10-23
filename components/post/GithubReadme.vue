@@ -90,16 +90,22 @@ export default {
     },
 
     imageParser(htmlString) {
+      let path = this.path.split("/")
+      path.pop()
+      if(path.length > 0)
+        path = path.reduce((acc, value)=> acc+"/"+value)
+      else
+        path = ''
+
+
       const parser = new DOMParser();
       const dom = parser.parseFromString(htmlString, 'text/html');
       const images = dom.getElementsByTagName("img")
       if(!images)
         return htmlString
-
-      console.log()
       
       Array.from(images).map(it=> {
-        const src = `${this.getRawContentUrl()}/${it.getAttribute("src")}`
+        const src = `${this.getRawContentUrl()}/${path}/${it.getAttribute("src")}`
         it.setAttribute("src", src)
       })
 
