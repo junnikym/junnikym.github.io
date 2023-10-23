@@ -11,7 +11,6 @@ import axios from "axios";
 // LearningTDD/main/README.md
 const username = "junnikym";
 const githubRawContent = "https://raw.githubusercontent.com";
-const loadUrl = githubRawContent+"/"+username;
 
 export default {
   props: {
@@ -52,7 +51,7 @@ export default {
         console.error(err);
       }
 
-      axios.get(loadUrl+`/${this.repoName}/${this.branchName}/${this.path}`)
+      axios.get(`${this.getRawContentUrl()}/${this.path}`)
       .then(readmeLoadThen)
       .catch(readmeLoadErr);
     },
@@ -62,7 +61,7 @@ export default {
         if(res.status != 200)
           return console.error("Can Not Found");
 
-        this.readmeText = res.data;
+        this.readmeText = this.imageParser(res.data);
       }
 
       const renderMarkdownLoadErr = (err)=>{
@@ -85,6 +84,27 @@ export default {
       .then(renderMarkdownLoadThen)
       .catch(renderMarkdownLoadErr);
     },
+
+    getRawContentUrl() {
+      return `${githubRawContent}/${username}/${this.repoName}/${this.branchName}`
+    },
+
+    imageParser(htmlString) {
+      const parser = new DOMParser();
+      const dom = parser.parseFromString(htmlString, 'text/html');
+      const images = dom.getElementsByTagName("img")
+      if(!images)
+        return htmlString
+
+      console.log()
+      
+      Array.from(images).map(it=> {
+        const src = `${this.getRawContentUrl()}/${it.getAttribute("src")}`
+        it.setAttribute("src", src)
+      })
+
+      return (new XMLSerializer()).serializeToString(dom);
+    }
   },
 
   computed: {
