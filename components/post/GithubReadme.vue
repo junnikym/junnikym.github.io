@@ -126,6 +126,8 @@ export default {
 @import "@/assets/scss/colors.scss";
 
 .markdown-body {
+  position: relative;
+  width: 100%;
   background-color: $lighter-color;
 }
 
