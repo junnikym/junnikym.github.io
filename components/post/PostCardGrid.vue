@@ -6,6 +6,8 @@
                 :key="index"
                 :number="post.number"
                 :title="post.title"
+                :imageUrl="post.imageUrl"
+                :imageSize="post.imageSize"
                 :preview="post.preview"
                 :createdAt="post.createdAt"
                 data-aos="fade-in" />
@@ -19,7 +21,6 @@ import axios from "axios";
 
 const username = "junnikym";
 const repo = "blog-post";
-const loadUrl = `https://api.github.com/repos/${username}/${repo}/issues?state=closed`;
 
 export default {
   components: {
@@ -38,12 +39,17 @@ export default {
 
   methods: {
 
-    convertResponse(res) {
+    convertIssue(issue, commentBodies) {
+      const detailInfo = commentBodies.reduce((acc, value)=> {
+        Object.assign(acc, value)
+      })
       return {
-        number: res.number,
-        title: res.title,
-        preview: res.body,
-        createdAt: res.created_at.split("T")[0],
+        number: parseInt(issue.number),
+        title: issue.title,
+        preview: issue.body,
+        createdAt: issue.created_at.split("T")[0],
+        imageUrl: detailInfo.image ? `https://github.com/junnikym/blog-post/blob/main/images/${detailInfo.image}?raw=true` : undefined,
+        imageSize: detailInfo.imageSize,
       }
     },
 
@@ -51,26 +57,54 @@ export default {
       const issuesLoadThen = (res)=> {
         if(res.status != 200)
           return console.error("Can Not Found");
-
-        this.posts = this.posts.concat(
-          res.data.map( it=> this.convertResponse(it) )
-        );
+        
+          res.data.map( it=> this.loadPostInfos(it) )
       }
 
       const issuesLoadErr = (err)=>{
-        console.error(err);
+        console.error("on issue load : \n", err);
       }
 
-      await axios.get(loadUrl)
+      await axios.get(`https://api.github.com/repos/${username}/${repo}/issues?state=closed`, {
+          headers: {
+            "Accept": "application/vnd.github+json",
+            "Authorization": "Bearer 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",
+            "X-GitHub-Api-Version": "2022-11-28",
+          }
+        })
         .then(issuesLoadThen)
         .catch(issuesLoadErr);
+    },
 
-      return this.posts;
-    }
+    async loadPostInfos(issue) {
+      const issuesCommentsLoadThen = (res)=> {
+        if(res.status != 200)
+          return console.error("Can Not Found");
+
+        const commentBodies = res.data.map( it=> JSON.parse(it.body) )
+        const post = this.convertIssue(issue, commentBodies)
+        this.posts = this.posts.concat(post);
+        post.sort( (lhs, rhs)=> lhs.number - rhs.number )
+      }
+
+      const issuesCommentsLoadErr = (err)=>{
+        console.error("on issue comments load : \n", err);
+      }
+
+      await axios.get(issue['comments_url'], {
+          headers: {
+            "Accept": "application/vnd.github+json",
+            "Authorization": "Bearer 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",
+            "X-GitHub-Api-Version": "2022-11-28",
+          }
+        })
+        .then(issuesCommentsLoadThen)
+        .catch(issuesCommentsLoadErr);
+    },
 
   },
 
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -84,6 +118,8 @@ export default {
   padding: 20px;
 }
 .post-card{
-  margin: 20px;
+  margin: 40px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 </style>

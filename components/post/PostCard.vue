@@ -1,9 +1,9 @@
 <template>
   <div class="post-card" @click.prevent="goToPost()">
-    <div v-if="isPictureMode()" class="post-card-visual-infos">
+    <div v-if="isImageMode()" class="post-card-visual-infos">
       <div class="post-card-image-outer-frame">
         <div class="post-card-image-inner-frame">
-          <img v-if="imageUrl" :src="imageUrl" />
+          <img v-if="imageUrl" :src="imageUrl" :height="getImageSize()"/>
           <div v-else style="width: 100%; height: 100%;">
             <div class="post-card-number">#{{number}}</div>
             <div class="post-card-created-at">{{createdAt}}</div>
@@ -32,12 +32,16 @@ export default {
     title: String,
     preview: String,
     imageUrl: String,
+    imageSize: Number,
     createdAt: String,
   },
 
   methods: {
-    isPictureMode() {
+    isImageMode() {
       return window.innerWidth > 880
+    },
+    getImageSize() {
+      return (this.imageSize?this.imageSize:100)+"%";
     },
 
     goToPost() {
@@ -95,7 +99,7 @@ $post-card-content-ratio: 3/4;
       position: relative;
       display: flex;
       justify-content: center;
-      align-content: center;
+      align-items: center;
       margin-top: 20px;
       margin-bottom: 20px;
       width: 85%;
@@ -116,7 +120,7 @@ $post-card-content-ratio: 3/4;
         position: absolute;
         display: flex;
         justify-content: center;
-        align-content: center;
+        align-items: center;
         top: 25px;
         width: calc(100% - 25px * 2);
         height: calc(100% - 25px * 2);
@@ -133,10 +137,8 @@ $post-card-content-ratio: 3/4;
           box-shadow: -1px -1px 2px $shadow-white-color, 1px 1px 2px $shadow-dark-color;
         }
 
-        image {
+        img {
           position: absolute;
-          padding: 20%;
-          height: 60%;
           left: 50%;
           transform: translateX(-50%);
         }

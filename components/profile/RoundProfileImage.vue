@@ -18,8 +18,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/assets/scss/colors.scss";
+
   .profile-image {
+    box-shadow: 0px 0px 15px $darkest-color;
     border-radius: 50%;
   }
 </style>

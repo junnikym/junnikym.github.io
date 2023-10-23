@@ -75,6 +75,7 @@ export default {
   padding: $profile-padding;
 
   height: ($profile-padding * 2 + $profile-image-size);
+  text-shadow: 5px 5px 5px $darkest-color;
 
   @media (min-width: $profile-transforms-at) {
     width: $profile-max-width;
@@ -98,8 +99,7 @@ export default {
       padding: $profile-padding 0 0;
       color: $darkest-color;
     }
-    .__profile-image {
-    }
+  
     .github-icon, .email-icon {
       filter: invert(100%);
     }
@@ -108,10 +108,6 @@ export default {
   * {
     margin: 0;
     padding: 0;
-  }
-
-  .__profile-info {
-
   }
 
   .__profile-image {
