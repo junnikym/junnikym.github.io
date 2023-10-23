@@ -1,5 +1,7 @@
 <template>
-	<viewer :value=readmeText></viewer>
+  <div>
+    <div class="markdown-body" v-html="readmeText"></div>
+  </div>
 </template>
 
 <script>
@@ -27,68 +29,68 @@ export default {
     }
   },
 
-	data() {
-		return {
-			readmeText: "",
-		}
-	},
+  data() {
+    return {
+      readmeText: "",
+    }
+  },
 
-	created() {
-		this.loadGithubReadme();
-	},
+  created() {
+    this.loadGithubReadme();
+  },
 
-	methods: {
-		async loadGithubReadme() {
-			const readmeLoadThen = (res)=> {
-				if(res.status != 200)
-					return console.error("Can Not Found");
+  methods: {
+    async loadGithubReadme() {
+      const readmeLoadThen = (res)=> {
+        if(res.status != 200)
+          return console.error("Can Not Found");
 
-				this.renderMarkdown(res.data)
-			}
+        this.renderMarkdown(res.data)
+      }
 
-			const readmeLoadErr = (err)=>{
-				console.error(err);
-			}
+      const readmeLoadErr = (err)=>{
+        console.error(err);
+      }
 
-			axios.get(loadUrl+`/${this.repoName}/${this.branchName}/${this.path}`)
-			.then(readmeLoadThen)
-			.catch(readmeLoadErr);
-		},
+      axios.get(loadUrl+`/${this.repoName}/${this.branchName}/${this.path}`)
+      .then(readmeLoadThen)
+      .catch(readmeLoadErr);
+    },
 
-		async renderMarkdown(markdown) {
-			const renderMarkdownLoadThen = (res)=> {
-				if(res.status != 200)
-					return console.error("Can Not Found");
+    async renderMarkdown(markdown) {
+      const renderMarkdownLoadThen = (res)=> {
+        if(res.status != 200)
+          return console.error("Can Not Found");
 
-				this.readmeText = res.data;
-			}
+        this.readmeText = res.data;
+      }
 
-			const renderMarkdownLoadErr = (err)=>{
-				console.error(err);
-			}
+      const renderMarkdownLoadErr = (err)=>{
+        console.error(err);
+      }
 
-			await axios.post(
-				"https://api.github.com/markdown", 
-				{
-					text: markdown
-				},
-				{
-					headers: {
-						Accept: "application/vnd.github+json",
-						Authorization: "Bearer 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",
-						"X-GitHub-Api-Version": "2022-11-28"
-					}
-				}
-			)
-			.then(renderMarkdownLoadThen)
-			.catch(renderMarkdownLoadErr);
-		},
-	},
+      await axios.post(
+        "https://api.github.com/markdown", 
+        {
+          text: markdown
+        },
+        {
+          headers: {
+            "Accept": "application/vnd.github+json",
+            "Authorization": `${process.env.GITHUB_API_KEY}`,
+            "X-GitHub-Api-Version": "2022-11-28",
+          }
+        }
+      )
+      .then(renderMarkdownLoadThen)
+      .catch(renderMarkdownLoadErr);
+    },
+  },
 
-	computed: {
-		changeMarkdown() {
-		}
-	}
+  computed: {
+    changeMarkdown() {
+    }
+  }
 
 }
 
@@ -96,5 +98,9 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/scss/colors.scss";
+
+.markdown-body {
+  background-color: $lighter-color;
+}
 
 </style>
