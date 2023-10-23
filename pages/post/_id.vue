@@ -83,7 +83,9 @@ export default {
 
       await axios.get(loadUrl, {
           headers: {
-            Authorization: "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",
+            "Accept": "application/vnd.github+json",
+            "Authorization": "Bearer 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",
+            "X-GitHub-Api-Version": "2022-11-28",
           }
         })
         .then(issueCommentsLoadThen)
