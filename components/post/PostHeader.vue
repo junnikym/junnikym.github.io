@@ -54,7 +54,9 @@ export default {
 	    const loadUrl = `https://api.github.com/repos/${username}/${repo}/issues/${this.number}`;
       await axios.get(loadUrl, {
           headers: {
-            Authorization: "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",
+            "Accept": "application/vnd.github+json",
+            "Authorization": `${process.env.GITHUB_API_KEY}`,
+            "X-GitHub-Api-Version": "2022-11-28",
           }
         })
         .then(issuesLoadThen)
