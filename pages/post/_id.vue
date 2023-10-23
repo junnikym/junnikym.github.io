@@ -84,7 +84,7 @@ export default {
       await axios.get(loadUrl, {
           headers: {
             "Accept": "application/vnd.github+json",
-            "Authorization": `Bearer ${process.env.GITHUB_API_KEY}`,
+            "Authorization": `${process.env.GITHUB_API_KEY}`,
             "X-GitHub-Api-Version": "2022-11-28",
           }
         })

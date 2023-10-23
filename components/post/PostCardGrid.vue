@@ -68,7 +68,7 @@ export default {
       await axios.get(`https://api.github.com/repos/${username}/${repo}/issues?state=closed`, {
           headers: {
             "Accept": "application/vnd.github+json",
-            "Authorization": `Bearer ${process.env.GITHUB_API_KEY}`,
+            "Authorization": `${process.env.GITHUB_API_KEY}`,
             "X-GitHub-Api-Version": "2022-11-28",
           }
         })
@@ -94,7 +94,7 @@ export default {
       await axios.get(issue['comments_url'], {
           headers: {
             "Accept": "application/vnd.github+json",
-            "Authorization": `Bearer ${process.env.GITHUB_API_KEY}`,
+            "Authorization": `${process.env.GITHUB_API_KEY}`,
             "X-GitHub-Api-Version": "2022-11-28",
           }
         })
