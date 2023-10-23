@@ -43,6 +43,11 @@ jobs:
       - name: Install dependencies 👨🏻‍💻
         run: yarn
 
+       - name: create dotenv
+         run: |
+          touch .env
+          echo "GITHUB_API_KEY=${{ secrets.GITHUB_TOKEN }}" >> .env
+
       - name: Run tests 🧪
         run: yarn test --passWithNoTests
 
