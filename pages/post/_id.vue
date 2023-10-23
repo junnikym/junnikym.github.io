@@ -107,7 +107,9 @@ export default {
   display: flex;
   position: relative;
   justify-content: center;
-  max-width: 500px;
+  
+  width: 100%;
+  max-width: 820px;
 }
 header {
   display: flex;
