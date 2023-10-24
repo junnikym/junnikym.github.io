@@ -83,7 +83,7 @@ export default {
   font-weight: 600;
 
   * {
-	color: white;
+	color: $main-color;
 	opacity: 0.75;
   }
 

@@ -1,11 +1,12 @@
-$profile-image-size: 200px;
+$profile-image-size: 180px;
+$profile-image-padding: 10px;
 $profile-info-size: $profile-image-size * 1.25;
-$profile-padding: 20px;
+$profile-padding: 35px;
 $profile-margin: 50px;
 
-$profile-max-width: ($profile-image-size + $profile-info-size + $profile-padding);
-$profile-min-width: $profile-image-size;
-$profile-max-height: ($profile-image-size * 1.5);
-$profile-min-height: $profile-image-size;
+$profile-max-width: ($profile-image-size + $profile-image-padding * 2 + $profile-info-size + $profile-padding);
+$profile-min-width: $profile-image-size + $profile-image-padding * 2;
+$profile-max-height: ($profile-image-size + $profile-image-padding * 2) * 1.75;
+$profile-min-height: $profile-image-size + $profile-image-padding * 2;
 
 $profile-transforms-at: $profile-max-width + $profile-padding * 2 + $profile-margin * 2

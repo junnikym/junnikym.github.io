@@ -1,7 +1,7 @@
 <template>
   <div class="contents"> 
     <header>
-      <PostHeader class="post-card"
+      <PostHeader class="post-header"
                 :number="postNumber"
                 :title="'test'"
                 :preview="'test'"
@@ -104,7 +104,7 @@ header {
   position: relative;
   width: 100%;
 
-  .post-card {
+  .post-header {
     display: flex;
     margin: 0 auto;
     justify-content: center;

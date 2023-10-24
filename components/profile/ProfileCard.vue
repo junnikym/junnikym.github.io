@@ -75,7 +75,9 @@ export default {
   padding: $profile-padding;
 
   height: ($profile-padding * 2 + $profile-image-size);
-  text-shadow: 5px 5px 5px $darkest-color;
+
+  border-radius: 15px;
+  box-shadow: -5px -5px 20px $shadow-white-color,  5px 5px 20px $shadow-dark-color;
 
   @media (min-width: $profile-transforms-at) {
     width: $profile-max-width;
@@ -84,7 +86,7 @@ export default {
     .__profile-info {
       width: $profile-info-size;
       padding: 0 0 0 $profile-padding;
-      color: $lightest-color;
+      color: $main-color;
     }
     .__profile-image {
     }
@@ -97,7 +99,7 @@ export default {
     .__profile-info {
       width: $profile-image-size;
       padding: $profile-padding 0 0;
-      color: $darkest-color;
+      color: $main-color;
     }
   
     .github-icon, .email-icon {
@@ -126,6 +128,7 @@ export default {
     margin: 5px;
     width: $profile-info-icon-size;
     height: $profile-info-icon-size;
+    filter: invert(100%);
   }
   a {
     color: inherit;
