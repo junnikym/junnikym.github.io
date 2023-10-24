@@ -8,12 +8,10 @@
                 :createdAt="'test'"/>
     </header>
     <section>
-      <GithubReadme class="post"
-                    v-if="type==='repo'"
-                    :repoName="repoName"
-                    :branchName="branchName"
-                    :path="path" />
-	  <Comment/>
+      <Post :type="type"
+            :repoName="repoName"
+            :branchName="branchName"
+            :path="path" />
     </section>
   </div>
 </template>
@@ -22,15 +20,14 @@
 
 import axios from "axios";
 import PostHeader from "@/components/post/PostHeader.vue";
-import GithubReadme from "@/components/post/GithubReadme.vue";
-import Comment from "@/components/comment/Comment.vue";
+import Post from "@/components/post/Post.vue";
 
 const username = "junnikym";
 const repo = "blog-post";
 
 export default {
   name: "PostIndexPage",
-  components: { GithubReadme },
+  components: { Post },
   data() {
     return {
       type: null,
@@ -45,7 +42,6 @@ export default {
     this.postNumber = parseInt(this.$route.params.id);
   },
   methods: {
-
     textToJson(txt) {
       try {
         return JSON.parse(txt)
@@ -103,14 +99,6 @@ export default {
   place-items: center;
 }
 
-.post {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  
-  width: 100%;
-  max-width: 820px;
-}
 header {
   display: flex;
   position: relative;
