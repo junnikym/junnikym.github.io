@@ -1,6 +1,7 @@
 <template>
   <div class="contents"> 
     <header>
+      <LayoutHeader></LayoutHeader>
       <PostHeader class="post-header"
                 :number="postNumber"
                 :title="'test'"
@@ -20,6 +21,7 @@
 <script>
 
 import axios from "axios";
+import LayoutHeader from "@/components/common/Header.vue";
 import PostHeader from "@/components/post/PostHeader.vue";
 import Post from "@/components/post/Post.vue";
 
@@ -28,7 +30,7 @@ const repo = "blog-post";
 
 export default {
   name: "PostIndexPage",
-  components: { Post },
+  components: { Post, PostHeader, LayoutHeader },
   data() {
     return {
       type: null,
@@ -105,6 +107,7 @@ $post-contents-max-width: 820px;
   header {
     display: flex;
     position: relative;
+    margin: 0; padding: 0;
     width: 100%;
     height: auto;
 

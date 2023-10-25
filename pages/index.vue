@@ -1,6 +1,7 @@
 <template>
   <div class="contents">
     <header>
+      <Header></Header>
       <ProfileCard
         class="profile-card" />
     </header>
@@ -16,6 +17,7 @@
 </template>
 
 <script>
+import Header from "@/components/common/Header.vue";
 import ProfileCard from "@/components/profile/ProfileCard.vue";
 import PostCardGrid from "@/components/post/PostCardGrid.vue";
 
@@ -24,6 +26,7 @@ export default {
 	name: 'IndexPage',
 
   components: {
+    Header,
     ProfileCard,
     PostCardGrid
   },
@@ -51,7 +54,7 @@ header {
 .profile-card {
   position: absolute;
   justify-self: center;
-  top: $header-size - ($profile-image-size * (3/4));
+  top: $header-size - ($profile-image-size * 0.69);
 }
 
 section {
