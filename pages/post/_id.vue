@@ -1,14 +1,16 @@
 <template>
   <div class="contents"> 
     <header>
-      <PostHeader class="post-card"
+      <LayoutHeader></LayoutHeader>
+      <PostHeader class="post-header"
                 :number="postNumber"
                 :title="'test'"
                 :preview="'test'"
                 :createdAt="'test'"/>
     </header>
     <section>
-      <Post :type="type"
+      <Post class="post-contents"
+            :type="type"
             :repoName="repoName"
             :branchName="branchName"
             :path="path" />
@@ -19,6 +21,7 @@
 <script>
 
 import axios from "axios";
+import LayoutHeader from "@/components/common/Header.vue";
 import PostHeader from "@/components/post/PostHeader.vue";
 import Post from "@/components/post/Post.vue";
 
@@ -27,7 +30,7 @@ const repo = "blog-post";
 
 export default {
   name: "PostIndexPage",
-  components: { Post },
+  components: { Post, PostHeader, LayoutHeader },
   data() {
     return {
       type: null,
@@ -95,22 +98,38 @@ export default {
 @import "@/assets/scss/colors.scss";
 @import "@/assets/scss/layout.scss";
 
+$post-header-max-width: 620px;
+$post-contents-max-width: 820px;
+
 .contents {
   place-items: center;
-}
 
-header {
-  display: flex;
-  position: relative;
-  width: 100%;
-
-  .post-card {
+  header {
     display: flex;
-    margin: 0 auto;
-    justify-content: center;
+    position: relative;
+    margin: 0; padding: 0;
     width: 100%;
-    max-width: 500px;
-    height: 100%;
+    height: auto;
+
+    .post-header {
+      position: relative;
+      display: flex;
+      margin: 0 auto;
+      margin-top: 90px;
+      justify-content: center;
+      width: 100%;
+      max-width: $post-header-max-width;
+    }
   }
+
+  section {
+    width: 100%;
+    max-width: $post-contents-max-width;
+
+    .post-content {
+      width: 100%;
+    }
+  }
+
 }
 </style>

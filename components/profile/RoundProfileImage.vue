@@ -20,9 +20,19 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/scss/colors.scss";
+@import "assets/scss/profile/ProfileVariables.scss";
 
-  .profile-image {
-    box-shadow: 0px 0px 15px $darkest-color;
-    border-radius: 50%;
+.profile-image {
+  padding: $profile-image-padding;
+  box-shadow: inset 2px 2px 8px $shadow-dark-color, inset -2px -2px 8px $shadow-white-color;
+  border-radius: 50%;
+  
+  &:hover {
+    box-shadow: inset 1px 1px 3px $shadow-dark-color, inset -1px -1px 3px $shadow-white-color;
   }
+
+  &:active {
+    box-shadow: inset -1px -1px 2px $shadow-dark-color, inset 1px 1px 2px $shadow-white-color;
+  }
+}
 </style>
