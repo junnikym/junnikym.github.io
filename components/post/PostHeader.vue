@@ -1,13 +1,17 @@
 <template>
   <div class="post-header">
-    <h1 class="post-header-number">#{{number}}</h1>
-    <h3 class="post-header-title">{{title}}</h3>
-    <div class="post-header-contents">
-      {{preview}}
+    <div class="post-header-title-infos">
+      <h3 class="post-header-title">{{title}}</h3>
+      <div class="post-header-contents">
+        {{preview}}
+      </div>
     </div>
-    <div class="post-header-created-at">{{createdAt}}</div>
+    <div class="post-header-additional-infos">
+      <h1 class="post-header-number">#{{number}}</h1>
+      <div class="post-header-created-at">{{createdAt}}</div>
+    </div>
 
-    <div class="header-dividing-line"></div>
+    <div class="horizontal-dividing-line"></div>
     <div class="post-header-share">
       <a><span class='link-icon'></span></a>
       <div class="vertical-dividing-line"></div>
@@ -87,56 +91,72 @@ export default {
 .post-header {
   position: absolute;
   width: 100%;
-  font-weight: 600;
-
+  flex-direction: column;
+  justify-content: center;
+  
   * {
-	color: $main-color;
-	opacity: 0.75;
+    color: $main-color;
+    opacity: 0.75;
   }
 
   color: $dark-color;
 
-  .post-header-number {
-    position: absolute;
-    bottom: 15px; right: 0;
-    font-size: 100px;
+  .post-header-title-infos {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .post-header-title {
+      width: 100%;
+      margin: 0 0 20px 0; padding: 0;
+      font-size: 38px;
+      font-weight: 800;
+      text-shadow: -2px -2px 4px $shadow-white-color,  2px 2px 4px $shadow-dark-color;
+    }
+    .post-header-contents {
+      width: 100%;
+      margin: 0 0 20px 0; padding: 0;
+      font-size: 18px;
+    }
   }
 
-  .post-header-title {
-    position: absolute;
-    top: 15px; left: 0;
-    font-size: 32px;
-  }
-  .post-header-contents {
-    position: absolute;
-    top: 60px; left: 0;
-    font-size: 18px;
+  .post-header-additional-infos {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .post-header-number {
+      width: 100%;
+      text-align: right;
+      font-size: 100px;
+      font-weight: 700;
+      text-shadow: -2px -2px 4px $shadow-white-color,  2px 2px 4px $shadow-dark-color;
+    }
+
+    .post-header-created-at {
+      width: 100%;
+      text-align: right;
+      font-weight: bold;
+    }
   }
 
-  .post-header-created-at {
-    position: absolute;
-    font-weight: bold;
-    top: 185px; right: 0;
-  }
-
-  .header-dividing-line {
-    position: absolute;
-    top: 220px;
-    width: 120%;
+  .horizontal-dividing-line {
+    width: 100%;
     height: 10px;
+    margin: 25px 0px;
     border-radius: 5px;
     background-color: $main-color;
     box-shadow: -5px -5px 10px 5px $shadow-white-color,  5px 5px 10px 5px $shadow-dark-color;
   }
 
   .post-header-share {
-    position: absolute;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     height: 45px;
     width: calc(100% - 50px);
-    top: 245px; left: 0;
     padding: 10px 25px ;
     box-shadow: inset 2px 2px 8px $shadow-dark-color, inset -2px -2px 8px $shadow-white-color;
     border-radius: 15px;

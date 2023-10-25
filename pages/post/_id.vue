@@ -8,7 +8,8 @@
                 :createdAt="'test'"/>
     </header>
     <section>
-      <Post :type="type"
+      <Post class="post-contents"
+            :type="type"
             :repoName="repoName"
             :branchName="branchName"
             :path="path" />
@@ -95,22 +96,37 @@ export default {
 @import "@/assets/scss/colors.scss";
 @import "@/assets/scss/layout.scss";
 
+$post-header-max-width: 620px;
+$post-contents-max-width: 820px;
+
 .contents {
   place-items: center;
-}
 
-header {
-  display: flex;
-  position: relative;
-  width: 100%;
-
-  .post-header {
+  header {
     display: flex;
-    margin: 0 auto;
-    justify-content: center;
+    position: relative;
     width: 100%;
-    max-width: 500px;
-    height: 100%;
+    height: auto;
+
+    .post-header {
+      position: relative;
+      display: flex;
+      margin: 0 auto;
+      margin-top: 90px;
+      justify-content: center;
+      width: 100%;
+      max-width: $post-header-max-width;
+    }
   }
+
+  section {
+    width: 100%;
+    max-width: $post-contents-max-width;
+
+    .post-content {
+      width: 100%;
+    }
+  }
+
 }
 </style>

@@ -51,9 +51,6 @@ export default {
   flex-direction: column;
   margin: 25px 0 25px 0;
 
-  width: 100%;
-  max-width: 820px;
-
   border-radius: 15px;
   box-shadow: -5px -5px 20px $shadow-white-color,  5px 5px 20px $shadow-dark-color;
   overflow: hidden;
