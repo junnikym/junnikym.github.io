@@ -6,6 +6,13 @@
       {{preview}}
     </div>
     <div class="post-header-created-at">{{createdAt}}</div>
+
+    <div class="header-dividing-line"></div>
+    <div class="post-header-share">
+      <a><span class='link-icon'></span></a>
+      <div class="vertical-dividing-line"></div>
+    </div>
+
   </div>
 </template>
 
@@ -109,7 +116,59 @@ export default {
   .post-header-created-at {
     position: absolute;
     font-weight: bold;
-    bottom: 15px; right: 0;
+    top: 185px; right: 0;
+  }
+
+  .header-dividing-line {
+    position: absolute;
+    top: 220px;
+    width: 120%;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $main-color;
+    box-shadow: -5px -5px 10px 5px $shadow-white-color,  5px 5px 10px 5px $shadow-dark-color;
+  }
+
+  .post-header-share {
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 45px;
+    width: calc(100% - 50px);
+    top: 245px; left: 0;
+    padding: 10px 25px ;
+    box-shadow: inset 2px 2px 8px $shadow-dark-color, inset -2px -2px 8px $shadow-white-color;
+    border-radius: 15px;
+    
+    > *:not(.vertical-dividing-line) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 0;
+      padding: 10px;
+
+      box-shadow: -5px -5px 20px $shadow-white-color,  5px 5px 20px $shadow-dark-color;
+      border-radius: 50%;
+
+      &:hover {
+        box-shadow: -2px -2px 5px $shadow-white-color, 2px 2px 5px $shadow-dark-color;
+      }
+
+      &:active {
+        box-shadow: inset 1px 1px 2px $shadow-white-color, inset -1px -1px 2px $shadow-white-color;
+      }
+    }
+
+    .vertical-dividing-line {
+      padding: 0px;
+      margin: 0px 15px;
+      width: 2px;
+      height: 70%;
+      background-color: $main-color;
+      box-shadow: -1px -1px 2px 1px $shadow-white-color,  1px 1px 2px 1px $shadow-dark-color;
+      border-radius: 1px;
+    }
   }
 }
 </style>
