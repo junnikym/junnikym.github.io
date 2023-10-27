@@ -112,9 +112,6 @@ export default {
 
 .post-card-grid {
   max-width: 1500px;
-
-  border-left: 1px solid $less-light-color;
-  border-right: 1px solid $less-light-color;
   padding: 20px;
 
   @media (max-width: $small-mode-width) {
