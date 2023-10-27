@@ -19,6 +19,8 @@
       </div>
       <div class="post-card-created-at">{{createdAt}}</div>
     </div>
+
+    <div class="horizontal-dividing-line"></div>
   </div>
 </template>
 
@@ -53,6 +55,7 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/scss/colors.scss";
+@import "@/assets/scss/post/PostVariables.scss";
 
 $post-card-border-radius: 5px;
 $post-card-content-ratio: 3/4;
@@ -62,6 +65,9 @@ $post-card-content-ratio: 3/4;
 
   min-height: 105px;
   padding: 20px;
+  margin: 40px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 
   border-radius: 15px;
   background-color: $lighter-color;
@@ -87,6 +93,76 @@ $post-card-content-ratio: 3/4;
   * {
     margin: 0;
     padding: 0;
+  }
+
+  .horizontal-dividing-line {
+    display: none;
+  }
+
+  @media (max-width: $small-mode-width) {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    overflow: visible;
+    .horizontal-dividing-line {
+      position: absolute;
+      display: block;
+      bottom: -2px;
+      width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 5px;
+      margin: 0px;
+      border-radius: 2px;
+      background-color: $light-color;
+      box-shadow: -5px -5px 10px 5px $shadow-white-color,  5px 5px 10px 5px $shadow-dark-color;
+    }
+
+    box-shadow: inset 2px 2px 8px $shadow-dark-color, inset -2px -2px 8px $shadow-white-color;
+
+    &:hover {
+      box-shadow: inset 4px 4px 16px $shadow-dark-color, inset -4px -4px 16px $shadow-white-color;
+    }
+
+    &:active {
+      box-shadow: inset 6px 6px 24px $shadow-dark-color, inset -6px -6px 20px $shadow-white-color;
+    }
+
+    // &:nth-child(1) {
+    //   box-shadow: inset 10px 10px 8px -8px $shadow-dark-color, inset -10px 0px 8px -8px $shadow-white-color;
+
+    //   &:hover {
+    //     box-shadow: inset 20px 20px 16px -16px $shadow-dark-color, inset -20px 0px 16px -16px $shadow-white-color;
+    //   }
+
+    //   &:active {
+    //     box-shadow: inset 30px 30px 24px -24px $shadow-dark-color, inset -30px 0px 24px -24px $shadow-white-color;
+    //   }
+    // }
+
+    // &:nth-last-child(1) {
+    //   box-shadow: inset 10px 0px 8px -8px $shadow-dark-color, inset -10px -10px 8px -8px $shadow-white-color;
+
+    //   &:hover {
+    //     box-shadow: inset 20px 0px 16px -16px $shadow-dark-color, inset -20px -20px 16px -16px $shadow-white-color;
+    //   }
+
+    //   &:active {
+    //     box-shadow: inset 30px 0px 24px -24px $shadow-dark-color, inset -30px -30px 24px -24px $shadow-white-color;
+    //   }
+    // }
+
+    &:nth-child(1) {
+      border-radius: 15px 15px 0 0;
+    }
+
+    &:nth-last-child(1) {
+      border-radius: 0 0 15px 15px;
+      .horizontal-dividing-line {
+        display: none;
+      }
+    }
   }
 
   .post-card-visual-infos {

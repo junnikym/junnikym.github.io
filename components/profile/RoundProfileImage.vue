@@ -26,7 +26,6 @@ export default {
   padding: $profile-image-padding;
   box-shadow: inset 2px 2px 8px $shadow-dark-color, inset -2px -2px 8px $shadow-white-color;
   border-radius: 50%;
-  
   &:hover {
     box-shadow: inset 1px 1px 3px $shadow-dark-color, inset -1px -1px 3px $shadow-white-color;
   }

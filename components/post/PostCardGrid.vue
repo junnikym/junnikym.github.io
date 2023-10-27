@@ -10,7 +10,7 @@
                 :imageSize="post.imageSize"
                 :preview="post.preview"
                 :createdAt="post.createdAt"
-                data-aos="fade-in" />
+                :style="{'z-index': 100000-index}" />
     </masonry>
   </div>
 </template>
@@ -38,7 +38,6 @@ export default {
   },
 
   methods: {
-
     convertIssue(issue, commentBodies) {
       const detailInfo = commentBodies.reduce((acc, value)=> {
         Object.assign(acc, value)
@@ -109,17 +108,14 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/scss/colors.scss";
+@import "@/assets/scss/post/PostVariables.scss";
 
 .post-card-grid {
   max-width: 1500px;
-
-  border-left: 1px solid $less-light-color;
-  border-right: 1px solid $less-light-color;
   padding: 20px;
-}
-.post-card{
-  margin: 40px;
-  margin-top: 40px;
-  margin-bottom: 60px;
+
+  @media (max-width: $small-mode-width) {
+    padding: 50px 10px;
+  }
 }
 </style>

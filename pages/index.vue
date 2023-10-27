@@ -5,6 +5,9 @@
       <ProfileCard
         class="profile-card" />
     </header>
+
+    <div class="horizontal-dividing-line"></div>
+    
     <section>
       <div class="post-card-grid-wrapper">
         <PostCardGrid class="post-card-grid"/>
@@ -41,20 +44,21 @@ $header-width: 80%;
 $header-height: 220px;
 
 header {
-  height: $header-size;
-
-  @media (min-width: $profile-transforms-at) {
-    margin-bottom: ($profile-image-size * 0.75);
-  }
-  @media (max-width: $profile-transforms-at) {
-    margin-bottom: ($profile-image-size * 1.5);
-  }
+  position: relative;
 }
 
 .profile-card {
-  position: absolute;
+  margin-top: 115px;
+}
+
+.horizontal-dividing-line {
+  width: 80%;
+  height: 2px;
+  margin: 50px 0 0 0;
+  border-radius: 1px;
   justify-self: center;
-  top: $header-size - ($profile-image-size * 0.69);
+  background-color: $main-color;
+  box-shadow: -5px -5px 10px 5px $shadow-white-color,  5px 5px 10px 5px $shadow-dark-color;
 }
 
 section {
