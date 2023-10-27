@@ -48,7 +48,7 @@ header {
 }
 
 .profile-card {
-  margin-top: 115px;
+  margin-top: 110px !important;
 }
 
 .horizontal-dividing-line {
