@@ -1,0 +1,46 @@
+@import "@/assets/scss/colors.scss";
+
+.post {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    $post-child-elems-width: calc(100% - 20px * 2);
+
+    .post-contents {
+        position: relative;
+        border-radius: 15px 15px 0px 0px;
+        padding: 20px;
+        width: $post-child-elems-width;
+
+        .markdown-body {
+            position: relative;
+            width: 100%;
+            background-color: transparent !important;
+
+            & > * {
+                position: relative;
+                width: 100%;
+                overflow-x: scroll;
+                box-sizing: border-box;
+            }
+            
+            & li {
+                display: block;
+            }
+        }
+
+    }
+
+    .post-comment {
+        padding: 20px;
+        width: $post-child-elems-width;
+        
+        > * {
+          width: 100%;
+          box-shadow: inset 5px 5px 20px $shadow-dark-color, inset -5px -5px 20px $shadow-white-color;
+          border-radius: 15px;
+        }
+    }
+}
