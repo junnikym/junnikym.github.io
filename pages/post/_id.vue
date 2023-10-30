@@ -98,7 +98,7 @@ export default {
 @import "@/assets/scss/colors.scss";
 @import "@/assets/scss/layout.scss";
 
-$post-header-max-width: 620px;
+$post-header-max-width: 820px;
 $post-contents-max-width: 820px;
 
 .contents {
@@ -107,7 +107,9 @@ $post-contents-max-width: 820px;
   header {
     display: flex;
     position: relative;
-    margin: 0; padding: 0;
+    margin: 0; 
+    padding: 25px;
+    box-sizing: border-box;
     width: 100%;
     height: auto;
 
@@ -125,9 +127,13 @@ $post-contents-max-width: 820px;
   section {
     width: 100%;
     max-width: $post-contents-max-width;
+    overflow: hidden;
+    margin: 25px 0 25px 0;
+    border-radius: 15px;
+    box-shadow: -5px -5px 20px $shadow-white-color,  5px 5px 20px $shadow-dark-color;
 
-    .post-content {
-      width: 100%;
+    @media (max-width: $post-contents-max-width) {
+      border-radius: 0px;
     }
   }
 
