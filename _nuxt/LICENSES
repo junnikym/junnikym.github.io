@@ -1,11 +1,4 @@
 /*!
- * Vue.js v2.7.15
- * (c) 2014-2023 Evan You
- * Released under the MIT License.
- */
-
-
-/*!
  * jQuery JavaScript Library v3.7.1
  * https://jquery.com/
  *
@@ -55,3 +48,10 @@
  */
 
 /*! https://mths.be/punycode v1.4.1 by @mathias */
+
+
+/*!
+ * Vue.js v2.7.15
+ * (c) 2014-2023 Evan You
+ * Released under the MIT License.
+ */
