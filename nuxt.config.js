@@ -25,6 +25,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/scss/icons.scss',
+    '@/assets/scss/colors.scss',
     '@/assets/scss/layout.scss',
     '@/assets/scss/post/Post.scss',
     'github-markdown-css/github-markdown-light.css'
