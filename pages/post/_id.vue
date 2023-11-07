@@ -3,10 +3,10 @@
     <header>
       <LayoutHeader></LayoutHeader>
       <PostHeader class="post-header"
-                :number="postNumber"
-                :title="'test'"
-                :preview="'test'"
-                :createdAt="'test'"/>
+                :postNumber="postNumber"
+                :title="title"
+                :preview="preview"
+                :createdAt="createdAt"/>
     </header>
     <section>
       <Post class="post-contents"
@@ -40,6 +40,9 @@ export default {
       branchName: null,
       path: null,
       postNumber: null,
+      title: null,
+      preview: null,
+      createdAt: null,
     }
   },
   created() {
@@ -48,35 +51,25 @@ export default {
     this.loadPostInfos();
   },
   methods: {
-    textToJson(txt) {
-      try {
-        return JSON.parse(txt)
-      } catch(e) {
-        return null;
-      }
-    },
-    convertResponse(res) {
-      for(let key in res) {
-        const body = res[key].body;
-        const json = this.textToJson(body);
-        if(json) {
-          this.type = json.type;
-          this.repoName = json.repo;
-          this.branchName = json.branch;
-          this.path = json.path
-          return;
-        }
-      }
-    },
     async loadPostInfos() {
 
-      const loadUrl = `https://api.github.com/repos/${username}/${repo}/issues/${this.$route.params.id}/comments?owner=${username}`;
+      const loadUrl = `https://api.github.com/repos/${username}/${repo}/issues/${this.$route.params.id}?owner=${username}`;
 
       const issueCommentsLoadThen = (res)=> {
         if(res.status != 200)
           return console.error("Can Not Found");
 
-        return this.convertResponse(res.data);
+        const issue = res.data
+        const details = JSON.parse(res.data.body)
+
+        this.type = details.type;
+        this.repoName = details.repo;
+        this.branchName = details.branch;
+        this.path = details.path;
+        this.postNumber = details.number ? details.number : this.postNumber;
+        this.title = issue.title;
+        this.preview = details.preview;
+        this.createdAt = details.createdAt ? details.createdAt : issue.createdAt;
       }
 
       const issueCommentsLoadErr = (err)=>{

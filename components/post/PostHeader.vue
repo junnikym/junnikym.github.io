@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="post-header-additional-infos">
-      <h1 class="post-header-number">#{{number}}</h1>
+      <h1 class="post-header-number">#{{postNumber}}</h1>
       <div class="post-header-created-at">{{createdAt}}</div>
     </div>
 
@@ -21,62 +21,28 @@
 </template>
 
 <script>
-import axios from "axios";
-
-const username = "junnikym";
-const repo = "blog-post";
-
 export default {
   name: "PostHeader",
 
   props: {
-    number: Number,
+    postNumber: {
+      type: Number,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    },
+    preview: {
+      type: String,
+      default: null
+    },
+    createdAt: {
+      type: String,
+      default: null
+    },
   },
 
-  created() {
-    this.loadPostHeaderInfos()
-  },
-
-  data() {
-    return {
-      title: "",
-      preview: "",
-      createdAt: "",
-    }
-  },
-
-  methods: {
-
-    async loadPostHeaderInfos() {
-      
-      const issuesLoadThen = (res)=> {
-        if(res.status != 200)
-          return console.error("Can Not Found");
-
-        this.title = res.data.title;
-        this.preview = res.data.body;
-        this.createdAt = res.data.created_at.split("T")[0];  
-      }
-
-      const issuesLoadErr = (err)=>{
-        console.error(err);
-      }
-
-	    const loadUrl = `https://api.github.com/repos/${username}/${repo}/issues/${this.number}`;
-      await axios.get(loadUrl, {
-          headers: {
-            "Accept": "application/vnd.github+json",
-            "Authorization": `${process.env.GITHUB_API_KEY}`,
-            "X-GitHub-Api-Version": "2022-11-28",
-          }
-        })
-        .then(issuesLoadThen)
-        .catch(issuesLoadErr);
-
-      return this.posts;
-    }
-
-  },
 };
 </script>
 

@@ -38,14 +38,11 @@ export default {
   },
 
   methods: {
-    convertIssue(issue, commentBodies) {
-      const detailInfo = commentBodies.reduce((acc, value)=> {
-        Object.assign(acc, value)
-      })
+    convertIssue(issue, detailInfo) {
       return {
         number: parseInt(issue.number),
         title: issue.title,
-        preview: issue.body,
+        preview: detailInfo.preview,
         createdAt: issue.created_at.split("T")[0],
         imageUrl: detailInfo.image ? `https://github.com/junnikym/blog-post/blob/main/images/${detailInfo.image}?raw=true` : undefined,
         imageSize: detailInfo.imageSize,
@@ -76,31 +73,11 @@ export default {
     },
 
     async loadPostInfos(issue) {
-      const issuesCommentsLoadThen = (res)=> {
-        if(res.status != 200)
-          return console.error("Can Not Found");
-
-        const commentBodies = res.data.map( it=> JSON.parse(it.body) )
-        const post = this.convertIssue(issue, commentBodies)
-        this.posts = this.posts.concat(post);
-        this.posts.sort((lhs, rhs)=> rhs.number-lhs.number )
-      }
-
-      const issuesCommentsLoadErr = (err)=>{
-        console.error("on issue comments load : \n", err);
-      }
-
-      await axios.get(issue['comments_url'], {
-          headers: {
-            "Accept": "application/vnd.github+json",
-            "Authorization": `${process.env.GITHUB_API_KEY}`,
-            "X-GitHub-Api-Version": "2022-11-28",
-          }
-        })
-        .then(issuesCommentsLoadThen)
-        .catch(issuesCommentsLoadErr);
+      const detailInfo = JSON.parse(issue.body)
+      const post = this.convertIssue(issue, detailInfo)
+      this.posts = this.posts.concat(post);
+      this.posts.sort((lhs, rhs)=> rhs.number-lhs.number )
     },
-
   },
 
 }
