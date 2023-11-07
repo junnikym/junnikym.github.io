@@ -10,6 +10,7 @@
     </header>
     <section>
       <Post class="post-contents"
+            :id="id"
             :type="type"
             :repoName="repoName"
             :branchName="branchName"
@@ -33,6 +34,7 @@ export default {
   components: { Post, PostHeader, LayoutHeader },
   data() {
     return {
+      id: null,
       type: null,
       repoName: null,
       branchName: null,
@@ -41,8 +43,9 @@ export default {
     }
   },
   created() {
-    this.loadPostInfos();
+    this.id = parseInt(this.$route.params.id);
     this.postNumber = parseInt(this.$route.params.id);
+    this.loadPostInfos();
   },
   methods: {
     textToJson(txt) {

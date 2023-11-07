@@ -6,7 +6,8 @@
                     :branchName="branchName"
                     :path="path" />
       <div class="post-comment">
-        <Comment class="post-comment-contents"/>
+        <Comment class="post-comment-contents"
+                 :postId="id"/>
       </div>
   </div>
 </template>
@@ -20,6 +21,10 @@ export default {
   name: "Post",
   components: { GithubReadme, Comment },
   props: {
+    id: {
+      type: Number,
+      default: null,
+    },
     type: {
       type: String,
       default: null,

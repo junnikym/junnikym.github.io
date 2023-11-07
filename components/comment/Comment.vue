@@ -1,8 +1,8 @@
 <template>
   <div class="comment">
     <script src="https://utteranc.es/client.js"
-        repo="junnikym/junnikym.github.io"
-        issue-term="pathname"
+        repo="junnikym/blog-post"
+        :issue-number="postId"
         theme="github-light"
         crossorigin="anonymous"
         async>
@@ -14,6 +14,12 @@
 
 export default {
   name: "Comment",
+  props: {
+    postId: {
+      type: Number,
+      default: null
+    },
+  },
 }
 
 </script>
